@@ -1,0 +1,65 @@
+﻿
+<div class="modal-header" id="input">
+    <button type="button" class="close" ng-click="vm.cancel()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">
+        <span>Periodo - {{vm.action}}</span>
+    </h4>
+</div>
+<div class="modal-body">
+    <div ng-switch on=vm.action>
+        <div ng-switch-when="Insertar">
+            <div class="form-line">
+                <label for="tipoNumeracionSelector"> Seleccione un Tipo de Numeracion: </label><br>
+                <select style="width: 70%;" id="tipoNumeracionSelector" ng-options="vTipoNumeracion.id as vTipoNumeracion.nombre for vTipoNumeracion in vm.arrayTipoNumeracion" ng-model="vm.data.tipoNumeracionId"></select>
+            </div>
+        </div>
+        <div ng-switch-default>
+            <div class="form-group">
+                <label class="form-control-label">Tenant</label>
+                <input id="tipoNumeracionNombre" autofocus class="form-control" type="text" ng-model="vm.data.tenantName" disabled />
+            </div>
+            <div class="form-line">
+                <label class="form-control-label">Tipo de Numeracion</label>
+                <input id="tipoNumeracionNombre" autofocus class="form-control" type="text" ng-model="vm.data.tipoNumeracionNombre" disabled />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-control-label">Nombre</label>
+        <input id="Nombre" autofocus class="form-control" type="text" ng-model="vm.data.nombre" ng-disabled="vm.enabled" />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label">Fecha de Apertura</label>        
+        <input type="text" id="fechaDeApertura" ng-model="vm.data.fechaDeApertura" ng-disabled="vm.enabled"  />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label">Fecha de Cierre</label>        
+        <input type="text" id="fechaDeCierre" ng-model="vm.data.fechaDeCierrre" ng-disabled="vm.enabled"/>
+    </div>
+</div>
+<div class="modal-footer">
+    
+        <button type="button" class="btn btn-primary waves-effect" ng-click="vm.save()" ng-hide="vm.hide">
+            Guardar
+        </button>
+    
+    <button type="button" class="btn btn-default waves-effect" ng-click="vm.cancel()">
+        Cancelar
+    </button>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#fechaDeCierre').bootstrapMaterialDatePicker({
+            weekStart: 0, time: false, lang: 'es'
+        });
+        $('#fechaDeApertura').bootstrapMaterialDatePicker({
+            weekStart: 0, time: false,
+          
+             lang: 'es'
+        });
+    })
+</script>
+

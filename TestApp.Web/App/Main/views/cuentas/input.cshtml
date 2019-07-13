@@ -1,0 +1,36 @@
+﻿
+<div class="modal-header" id="input">
+    <button type="button" class="close" ng-click="vm.cancel()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">
+        <span>Cuenta - {{vm.action}}</span>        
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <label class="form-control-label">Codigo</label>
+        <input id="Nombre" autofocus class="form-control" type="text" ng-model="vm.data.codigo" ng-disabled="vm.enabled" />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label">Descripción</label>
+        <input id="Nombre" autofocus class="form-control" type="text" ng-model="vm.data.descripcion" ng-disabled="vm.enabled" />
+    </div>   
+    <div class="form-group">
+        <label class="form-control-label">Es Titulo</label>
+        <input id="isactive" type="checkbox" name="IsActive" ng-model="vm.data.esTitulo" checked class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label">Naturaleza</label>
+        <input id="Nombre" autofocus class="form-control" type="text" ng-model="vm.data.fechaDeCierrre" ng-disabled="vm.enabled" />
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary waves-effect" ng-click="vm.save()" ng-hide="vm.hide">
+        Guardar
+    </button>
+
+    <button type="button" class="btn btn-default waves-effect" ng-click="vm.cancel()">
+        Cancelar
+    </button>
+</div>

@@ -29,9 +29,9 @@ namespace TestApp.Models {
         [Required]
         public DateTime FechaDeApertura { get; set; }
 
-        [Display(Name = "Fecha De Cierrre")]
+        [Display(Name = "Fecha De Cierre")]
         [Required]
-        public DateTime FechaDeCierrre { get; set; }
+        public DateTime FechaDeCierre { get; set; }
 
         [Timestamp]
         public Byte[] TimeStamp { get; set; }

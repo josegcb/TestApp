@@ -8,7 +8,6 @@ namespace Library {
     public interface IDataFilter {
         string FilterName { get; }
         string ParameterName { get; }
-
         object ParameterValue { get; set; }
 
     }

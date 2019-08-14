@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using Abp.Dependency;
 using AutoMapper;
 using Library.Services;
 using System;
@@ -13,7 +14,7 @@ using TestApp.Services.Interfaces;
 
 namespace TestApp.Services {
     public class PeriodoAppService : AppServiceBase<Periodo, PeriodoDown, PeriodoUp, PeriodoDelete, PeriodoPk> , IPeriodoAppService {
-        public PeriodoAppService(IManagerBase<Periodo> initManager) : base(initManager) {
+        public PeriodoAppService(IManagerBase<Periodo> initManager, IIocResolver initIIocResolver) : base(initManager, initIIocResolver) {
         }
 
         public PeriodoUp EscogerPeriodoActual(int valPeriodoId) {
@@ -24,6 +25,13 @@ namespace TestApp.Services {
         public override PeriodoUp Create(PeriodoDown valInput) {
             PeriodoUp vResult = base.Create(valInput);
             return EscogerPeriodoActual(vResult.Id);
+        }
+
+        public override PeriodoUp Initialize() {
+            PeriodoUp vResult = base.Initialize();
+            vResult.FechaDeApertura = DateTime.Now.Date;
+            vResult.FechaDeCierre  = DateTime.Now.Date;
+            return vResult;
         }
     }
 }

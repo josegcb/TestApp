@@ -15,14 +15,14 @@
     <div class="form-group">
         <label class="form-control-label">Descripción</label>
         <input id="Nombre" autofocus class="form-control" type="text" ng-model="vm.data.descripcion" ng-disabled="vm.enabled" />
-    </div>   
+    </div>
     <div class="form-group">
-        <label class="form-control-label">Es Titulo</label>
-        <input id="isactive" type="checkbox" name="IsActive" ng-model="vm.data.esTitulo" checked class="form-control" />
+        <input id="esTitulo" type="checkbox" name="esTitulo" ng-model="vm.data.esTitulo" checked class="form-control" />
+        <label class="form-control-label" for="esTitulo">Es Titulo</label>
     </div>
     <div class="form-group">
         <label class="form-control-label">Naturaleza</label>
-        <input id="Nombre" autofocus class="form-control" type="text" ng-model="vm.data.fechaDeCierrre" ng-disabled="vm.enabled" />
+        <select style="width: 70%;" id="naturaleza" ng-options="Descripcion.valor as Descripcion.descripcion for Descripcion in vm.enums" ng-model="vm.data.naturaleza" ng-disabled="vm.enabled"></select>
     </div>
 </div>
 <div class="modal-footer">

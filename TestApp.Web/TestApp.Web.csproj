@@ -481,6 +481,8 @@
     </Content>
     <Content Include="App\Main\services\appSession.js" />
     <Content Include="App\Main\views\comprobantes\index.js" />
+    <Content Include="App\Main\views\comprobantes\inputDetalle.js" />
+    <Content Include="App\Main\views\comprobantes\input.js" />
     <Content Include="App\Main\views\cuentas\index.js" />
     <Content Include="App\Main\views\cuentas\input.js" />
     <Content Include="App\Main\views\directives\autoFocus.js" />
@@ -2742,6 +2744,8 @@
     <Content Include="App\Main\views\cuentas\index.cshtml" />
     <Content Include="App\Main\views\comprobantes\index.cshtml" />
     <Content Include="App\Main\views\cuentas\input.cshtml" />
+    <Content Include="App\Main\views\comprobantes\input.cshtml" />
+    <Content Include="App\Main\views\comprobantes\inputDetalle.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -3539,6 +3543,7 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -3590,7 +3595,6 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PeriodosController.cs" />
     <Compile Include="Controllers\TestAppControllerBase.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Global.asax.cs">
@@ -3743,7 +3747,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Periodo\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library\Library.csproj">

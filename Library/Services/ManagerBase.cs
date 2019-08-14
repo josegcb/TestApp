@@ -58,19 +58,19 @@ namespace Library.Services {
 
         public override IEnumerable<TEntity> GetAll() {
             using (UnitOfWorkManager.Current.SetFilterParameter(_DataFilter.FilterName, _DataFilter.ParameterName,_DataFilter.ParameterValue)) {
-                return base.GetAll();
+                return _Repository.GetAll();
             }
         }
 
         public override TEntity GetById(int valId) {
             using (UnitOfWorkManager.Current.SetFilterParameter(_DataFilter.FilterName, _DataFilter.ParameterName, _DataFilter.ParameterValue)) {
-                return base.GetById(valId);
+                return _Repository.Get(valId);
             }
         }
 
         public override IEnumerable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] valUpdatedProperties) {
             using (UnitOfWorkManager.Current.SetFilterParameter(_DataFilter.FilterName, _DataFilter.ParameterName, _DataFilter.ParameterValue)) {
-                return base.GetAllIncluding(valUpdatedProperties);
+                return _Repository.GetAllIncluding(valUpdatedProperties);
             }
         }
 

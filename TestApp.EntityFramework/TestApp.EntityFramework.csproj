@@ -220,21 +220,33 @@
     <Compile Include="EntityFramework\Repositories\TestAppGenericRepository.cs" />
     <Compile Include="EntityFramework\TestAppDbContext.cs" />
     <Compile Include="EntityFramework\Repositories\TestAppRepositoryBase.cs" />
-    <Compile Include="Migrations\201907122336459_TipoNumeracion.cs" />
-    <Compile Include="Migrations\201907122336459_TipoNumeracion.Designer.cs">
-      <DependentUpon>201907122336459_TipoNumeracion.cs</DependentUpon>
+    <Compile Include="Migrations\201906281657088_TipoNumeracion.cs" />
+    <Compile Include="Migrations\201906281657088_TipoNumeracion.Designer.cs">
+      <DependentUpon>201906281657088_TipoNumeracion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907122337458_Periodo.cs" />
-    <Compile Include="Migrations\201907122337458_Periodo.Designer.cs">
-      <DependentUpon>201907122337458_Periodo.cs</DependentUpon>
+    <Compile Include="Migrations\201906281657455_Periodo.cs" />
+    <Compile Include="Migrations\201906281657455_Periodo.Designer.cs">
+      <DependentUpon>201906281657455_Periodo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907122338379_Cuenta.cs" />
-    <Compile Include="Migrations\201907122338379_Cuenta.Designer.cs">
-      <DependentUpon>201907122338379_Cuenta.cs</DependentUpon>
+    <Compile Include="Migrations\201907081654029_Cuenta.cs" />
+    <Compile Include="Migrations\201907081654029_Cuenta.Designer.cs">
+      <DependentUpon>201907081654029_Cuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907122339384_Comprobante.cs" />
-    <Compile Include="Migrations\201907122339384_Comprobante.Designer.cs">
-      <DependentUpon>201907122339384_Comprobante.cs</DependentUpon>
+    <Compile Include="Migrations\201907081717324_FiltroMFCPeriodo.cs" />
+    <Compile Include="Migrations\201907081717324_FiltroMFCPeriodo.Designer.cs">
+      <DependentUpon>201907081717324_FiltroMFCPeriodo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907082002203_Comprobante.cs" />
+    <Compile Include="Migrations\201907082002203_Comprobante.Designer.cs">
+      <DependentUpon>201907082002203_Comprobante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907171802179_PeriodoCambiarFechaDeCierre.cs" />
+    <Compile Include="Migrations\201907171802179_PeriodoCambiarFechaDeCierre.Designer.cs">
+      <DependentUpon>201907171802179_PeriodoCambiarFechaDeCierre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908121246538_Cambiodenombre.cs" />
+    <Compile Include="Migrations\201908121246538_Cambiodenombre.Designer.cs">
+      <DependentUpon>201908121246538_Cambiodenombre.cs</DependentUpon>
     </Compile>
     <Compile Include="TestAppDataModule.cs" />
     <Compile Include="Migrations\201809270654064_InitialMigrations.cs" />
@@ -291,17 +303,26 @@
     <EmbeddedResource Include="Migrations\201902080730036_Upgrade_ABP_To_4_2_0.resx">
       <DependentUpon>201902080730036_Upgrade_ABP_To_4_2_0.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907122336459_TipoNumeracion.resx">
-      <DependentUpon>201907122336459_TipoNumeracion.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906281657088_TipoNumeracion.resx">
+      <DependentUpon>201906281657088_TipoNumeracion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907122337458_Periodo.resx">
-      <DependentUpon>201907122337458_Periodo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906281657455_Periodo.resx">
+      <DependentUpon>201906281657455_Periodo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907122338379_Cuenta.resx">
-      <DependentUpon>201907122338379_Cuenta.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907081654029_Cuenta.resx">
+      <DependentUpon>201907081654029_Cuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907122339384_Comprobante.resx">
-      <DependentUpon>201907122339384_Comprobante.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907081717324_FiltroMFCPeriodo.resx">
+      <DependentUpon>201907081717324_FiltroMFCPeriodo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907082002203_Comprobante.resx">
+      <DependentUpon>201907082002203_Comprobante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907171802179_PeriodoCambiarFechaDeCierre.resx">
+      <DependentUpon>201907171802179_PeriodoCambiarFechaDeCierre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908121246538_Cambiodenombre.resx">
+      <DependentUpon>201908121246538_Cambiodenombre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

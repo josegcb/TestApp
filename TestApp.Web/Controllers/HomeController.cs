@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Abp.Web.Mvc.Authorization;
 using Library;
+using Library.Helpers;
 using Microsoft.Owin.Security;
 using Newtonsoft.Json;
 
@@ -30,8 +31,8 @@ namespace TestApp.Web.Controllers
                     vList = JsonConvert.DeserializeObject<List<MfcDto>>(Claim.Value);
                     identity.RemoveClaim(identity.FindFirst(LibraryConst.KeyMFCs));
                 }
-                if (vList != null) {
-                    string vFilterName = new DataFilters.DataFilterPeriodo().FilterName;
+                string vFilterName = new DataFilters.DataFilterPeriodo().FilterName;
+                if (vList != null && vList.Count > 0) {                    
                     foreach (var item in vList) {
                         if (vList.Count(p => p.Key.Equals(vFilterName, StringComparison.CurrentCultureIgnoreCase)) > 0) {
                             MfcDto vMfc = vList.Where(p => p.Key.Equals(vFilterName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
@@ -40,6 +41,8 @@ namespace TestApp.Web.Controllers
                             vList.Add(new MfcDto() { Key = vFilterName, Value = PeriodoId });
                         }
                     }
+                } else {
+                    vList.Add(new MfcDto() { Key = vFilterName, Value = PeriodoId });
                 }
                 identity.AddClaim(new System.Security.Claims.Claim(LibraryConst.KeyMFCs, JsonConvert.SerializeObject(vList)));
                 authenticationManager.AuthenticationResponseGrant =
@@ -53,5 +56,11 @@ namespace TestApp.Web.Controllers
 
             }
         }
+
+        [HttpPost]
+        public JsonResult GeEnumtDescripcion(string valEnumName) {            
+            return Json(EnumHelper.ToList(valEnumName));
+        }
+
     }
 }

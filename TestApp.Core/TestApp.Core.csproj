@@ -209,7 +209,7 @@
     <Compile Include="Models\ComprobanteDetalleCuenta.cs" />
     <Compile Include="Models\Comprobante.cs" />
     <Compile Include="Models\Cuenta.cs" />
-    <Compile Include="Models\eNaturalezaDeLaCuenta.cs" />
+    <Compile Include="Models\enum.cs" />
     <Compile Include="Models\Periodo.cs" />
     <Compile Include="Models\TipoNumeracion.cs" />
     <Compile Include="TestAppConsts.cs" />

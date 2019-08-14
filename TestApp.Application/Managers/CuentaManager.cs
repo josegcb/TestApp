@@ -26,9 +26,6 @@ namespace TestApp.Managers {
             return true;
         }
 
-        public override IEnumerable<Cuenta> GetAll() {
-            return base.GetAllIncluding(p => p.Periodo);
-        }
 
         //public override IEnumerable<Cuenta> GetAll() {
         //   // using (UnitOfWorkManager.Current.SetFilterParameter(DataFilterPeriodo.FilterName, DataFilterPeriodo.ParameterName, new Library.Helpers.ClaimHelper().GetCurrentMFCOrNull(DataFilterPeriodo.FilterName))) {

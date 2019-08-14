@@ -30,7 +30,7 @@ namespace TestApp.Models {
         [Display(Name = "Monto Debe")]
         [Decimal(18,5)]
         
-        public decimal  MontDebe { get; set; }
+        public decimal  MontoDebe { get; set; }
 
         [Display(Name = "Monto Haber")]
         [Decimal(18, 5)]

@@ -46,7 +46,8 @@
                 modalInstance.result.then(function () {
                     getRegistros();
                 });
-            }
+            }        
+
           
             inicializar();
         }

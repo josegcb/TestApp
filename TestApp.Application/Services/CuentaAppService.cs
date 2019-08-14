@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using Abp.Dependency;
 using AutoMapper;
 using Library.Services;
 using System;
@@ -13,7 +14,7 @@ using TestApp.Services.Interfaces;
 
 namespace TestApp.Services {
     public class CuentaAppService : AppServiceBase<Cuenta, CuentaDown, CuentaUp, CuentaDelete, CuentaPk>, ICuentaAppService {
-        public CuentaAppService(IManagerBase<Cuenta> initManager) : base(initManager) {
+        public CuentaAppService(IManagerBase<Cuenta> initManager, IIocResolver initIIocResolver) : base(initManager, initIIocResolver) {
         }
 
         public bool CambiarNaturalezaDeLaCuenta(CuentaActualizarNaturalezaDto valCuenta) {

@@ -2,31 +2,13 @@
 (function () {
     angular.module('app')
         .controller('app.views.periodos.input', [
-            '$http', '$scope', '$uibModalInstance', 'abp.services.app.periodo', 'abp.services.app.tipoNumeracion', 'parameters',
-            function ($http, $scope, $uibModalInstance, vService, vServiceTipoNumeracion, parameters) {
+            '$http', '$scope', '$filter', '$uibModalInstance', 'abp.services.app.periodo', 'abp.services.app.tipoNumeracion', 'parameters',
+            function ($http, $scope, $filter, $uibModalInstance, vService, vServiceTipoNumeracion, parameters) {
 
                 var vm = this;
 
-                vm.data = {                    
-                    nombre:'',
-                    fechaDeApertura: '',
-                    fechaDeCierre: '',                    
-                    tenantName: '',
-                    tenantConnectionString: '',
-                    tipoNumeracionNombre: ''
-                };
-
-                vm.arrayTipoNumeracion = {
-                    id: '',
-                    nombre: ''                   
-                };
-              
-		
-                vm.enabled = false;
-                vm.action = parameters.action;
-                vm.data.id = parameters.idRecord;
-                vm.hide = vm.action == 'Consultar';
-               
+                vm.conexionTipoNumeracion = [{
+                }];
                 vm.save = function () {
                     switch (vm.action) {
                         case "Insertar":
@@ -47,10 +29,7 @@
                             abp.message.confirm("Desea eliminar el registro?",
                                 function (result) {
                                     if (result) {
-                                        vService.delete({
-                                            id: idRecord,
-                                            timeStamp: vm.data.timeStamp
-                                        })
+                                        vService.delete(vm.data)
                                             .then(function () {
                                                 abp.notify.info("Registro eliminado ");
                                                 $uibModalInstance.close();
@@ -66,31 +45,45 @@
 
                 vm.cancel = function () {
                     $uibModalInstance.dismiss({});
-                };   
-                
-                function inicializar () {
-                    if (vm.action !== "Insertar") {                        
+                };
+
+                function inicializar() {
+                    vm.action = parameters.action;
+                    vm.enabled = false;
+                    vm.hide = vm.action == 'Consultar';
+                    if (vm.action == "Insertar") {
+                        vService.initialize()
+                            .then(function (result) {
+                                vm.data = result.data;
+                            });
+                    } else {
                         vService.get({
-                            id: vm.data.id
+                            id: parameters.idRecord
                         })
                             .then(function (result) {
                                 vm.data = result.data;
                             });
                         if (vm.action === "Eliminar" || vm.action === "Consultar") {
                             vm.enabled = true;
-                        }                        
-                    } 
-                    cargarInfoTipoNumeracion();
-                };
+                        }
+                    }
+                    loadInfoFK();
+                }
+                inicializar();
 
-                function cargarInfoTipoNumeracion() {                   
+                function loadInfoFK() {
                     vServiceTipoNumeracion.getAll()
-                            .then(function (result) {
-                                vm.arrayTipoNumeracion = result.data;
-                            });
+                        .then(function (result) {
+                            vm.conexionTipoNumeracion = result.data;
+                        });
                 }
 
-                inicializar();    
+                $scope.$watch('vm.data.fechaDeApertura', function (newValue) {
+                    $scope.vm.data.fechaDeApertura = $filter('date')(newValue, 'dd/MM/yyyy');
+                });
+                $scope.$watch('vm.data.fechaDeCierre', function (newValue) {
+                    $scope.vm.data.fechaDeCierre = $filter('date')(newValue, 'dd/MM/yyyy');
+                });
             }
         ]);
 })();

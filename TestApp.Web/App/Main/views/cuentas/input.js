@@ -3,25 +3,10 @@
     angular.module('app')
         .controller('app.views.cuentas.input', [
             '$http', '$scope', '$uibModalInstance', 'abp.services.app.cuenta', 'parameters',
-            function ($http, $scope, $uibModalInstance, vService, parameters) {                
-                var vm = this;                
-                vm.data = {
-                    tenantId:0,
-                    tipoNumeracionId:0,
-                    id: 0,
-                    nombre:'',
-                    fechaDeApertura: '',
-                    fechaDeCierrre: '',
-                    timeStamp: null,
-                    tenantName: '',
-                    tenantConnectionString: '',
-                    tipoNumeracionNombre: ''
-                };
-                vm.enabled = false;
-                vm.action = parameters.action;
-                vm.data.id = parameters.idRecord;
-                vm.hide = vm.action == 'Consultar';
-               
+            function ($http, $scope, $uibModalInstance, vService, parameters) {
+
+                var vm = this;
+
                 vm.save = function () {
                     switch (vm.action) {
                         case "Insertar":
@@ -42,10 +27,7 @@
                             abp.message.confirm("Desea eliminar el registro?",
                                 function (result) {
                                     if (result) {
-                                        vService.delete({
-                                            id: idRecord,
-                                            timeStamp: vm.data.timeStamp
-                                        })
+                                        vService.delete(vm.data)
                                             .then(function () {
                                                 abp.notify.info("Registro eliminado ");
                                                 $uibModalInstance.close();
@@ -61,12 +43,20 @@
 
                 vm.cancel = function () {
                     $uibModalInstance.dismiss({});
-                };   
-                
-                function inicializar () {
-                    if (vm.action !== "Insertar") {                        
+                };
+
+                function inicializar() {
+                    vm.action = parameters.action;
+                    vm.enabled = false;
+                    vm.hide = vm.action == 'Consultar';
+                    if (vm.action == "Insertar") {
+                        vService.initialize()
+                            .then(function (result) {
+                                vm.data = result.data;
+                            });
+                    } else {
                         vService.get({
-                            id: vm.data.id
+                            id: parameters.idRecord
                         })
                             .then(function (result) {
                                 vm.data = result.data;
@@ -75,9 +65,25 @@
                             vm.enabled = true;
                         }
                     }
+                    loadEnumDescripcion(eNaturalezaDeLaCuenta);
                 }
-
-                inicializar();               
+                inicializar();
+		
+		function loadEnumDescripcion(valEnum) {
+                    $http({
+                        method: "POST",
+                        url: "/Home/GeEnumtDescripcion",
+                        dataType: 'json',
+                        data: {
+                            valEnumName: valEnum
+                        },
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    }).then(function (result) {
+                        vm.enums = result.data;
+                    });
+                };              
             }
         ]);
 })();

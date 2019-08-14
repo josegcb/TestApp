@@ -81,6 +81,10 @@
                     templateUrl: '/App/Main/views/comprobantes/index.cshtml',
                     menu: 'Comprobantes'
                 })
+                .state('webapi', {
+                    url: '/swagger',                    
+                    menu: 'WebAPI' //Matches to name of 'About' menu in TestAppNavigationProvider
+                })
                 ;
         }
     ]);

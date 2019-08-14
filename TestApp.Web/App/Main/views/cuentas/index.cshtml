@@ -30,7 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="registro in vm.registros">
+                        <tr ng-repeat="registro in vm.registros | orderBy:['codigo','codigo.length']">
                             <td>{{registro.codigo}}</td>
                             <td>{{registro.descripcion}}</td>
                             <td align="center">

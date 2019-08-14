@@ -35,8 +35,11 @@ namespace TestApp.EntityFramework
          */
         public DbSet<TipoNumeracion> TiposNumeracion { get; set; }
         public DbSet<Periodo> Periodos { get; set; }
+
         public DbSet<Cuenta> Cuentas { get; set; }
+
         public DbSet<Comprobante> Comprobantes { get; set; }
+
         public DbSet<ComprobanteDetalleCuenta> ComprobantesDetalleCuenta { get; set; }
         public TestAppDbContext()
             : base("Default")

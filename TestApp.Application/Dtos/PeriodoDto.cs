@@ -3,7 +3,6 @@ using Abp.AutoMapper;
 using Abp.Runtime.Validation;
 using Library;
 using Library.Attributes;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +14,7 @@ using TestApp.Models;
 
 namespace TestApp.Dtos {
     [AutoMapFrom(typeof(Periodo))]
-    public class PeriodoDown : EntityDto , ICustomValidate {
-
+    public class PeriodoDown : EntityDto , ICustomValidate {       
         public int TenantId { get; set; }
 
         public int TipoNumeracionId { get; set; }
@@ -29,23 +27,22 @@ namespace TestApp.Dtos {
 
         [Display(Name = "Fecha De Apertura")]
         [Required]
-
         public DateTime FechaDeApertura { get; set; }
 
-        [Display(Name = "Fecha De Cierrre")]
+        [Display(Name = "Fecha De Cierre")]
         [Required]
-        public DateTime FechaDeCierrre { get; set; }
+        public DateTime FechaDeCierre { get; set; }
 
         [Timestamp]
         public Byte[] TimeStamp { get; set; }
 
 
         public void AddValidationErrors(CustomValidationContext context) {
-            if (FechaDeApertura > FechaDeCierrre) {
+            if (FechaDeApertura > FechaDeCierre) {
                 context.Results.Add(new ValidationResult("la fecha de cierre no puede ser menor que la fecha de apertura", new List<string>() { "Fecha de Apertura", "Fecha de Cierre" }));
             }
             DateTime vTmp = FechaDeApertura.AddYears(1);
-            if (vTmp < FechaDeCierrre) {
+            if (vTmp < FechaDeCierre) {
                 context.Results.Add(new ValidationResult("El periodo no puede ser mayor a un año ", new List<string>() { "Fecha de Apertura", "Fecha de Cierre" }));
             }
         }

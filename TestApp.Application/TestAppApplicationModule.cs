@@ -52,10 +52,17 @@ namespace TestApp
                 .ForMember(Up => Up.PeriodoNombre, conf => conf.MapFrom(T => T.Periodo.Nombre))                
                 .ReverseMap();
 
-                mapper.CreateMap<ComprobanteDetalleCuenta, ComprobanteDetalleCuentaDown>().ReverseMap();
+                mapper.CreateMap<ComprobanteDetalleCuenta, ComprobanteDetalleCuentaDown>()
+                //.ForMember(Down => Down.ComprobanteId, conf => conf.MapFrom(T => T.Comprobante.Id))
+                     //Mapper.CreateMap<Source, Target>()
+        //.ForMember(dest => dest.Value,
+          //         opt => opt.MapFrom
+            //       (src => src.Value1.StartsWith("A") ? src.Value1 : src.Value2));
+                .ReverseMap();
                 mapper.CreateMap<ComprobanteDetalleCuenta, ComprobanteDetalleCuentaPk>().ReverseMap();
                 mapper.CreateMap<ComprobanteDetalleCuenta, ComprobanteDetalleCuentaDelete>().ReverseMap();
                 mapper.CreateMap<ComprobanteDetalleCuenta, ComprobanteDetalleCuentaUp>()
+                //.ForMember(Up => Up.CuentaId , conf => conf.MapFrom(T => T.Cuenta.Id))
                 .ForMember(Up => Up.CuentaCodigo , conf => conf.MapFrom(T => T.Cuenta.Codigo))
                 .ForMember(Up => Up.CuentaDescripcion , conf => conf.MapFrom(T => T.Cuenta.Descripcion))
                 .ReverseMap();

@@ -27,14 +27,11 @@
             };
             vm.consultarModal = function (data) {
                 OpenModalForAction(data.id, "Consultar");
-            };          
-            vm.escoger = function (data) {
-                vService.escogerPeriodoActual(data.id);
-            };
+            };                      
             function OpenModalForAction(idRecord, action) {
                 var modalInstance = $uibModal.open({
                     templateUrl: '/App/Main/views/comprobantes/input.cshtml',
-                    controller: 'app.views.cuentas.input as vm',
+                    controller: 'app.views.comprobantes.input as vm',
                     backdrop: 'static',
                     resolve: {
                         parameters: {

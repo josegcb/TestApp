@@ -1,6 +1,8 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Dependency;
 using Abp.Domain.Entities;
+using Abp.Modules;
 using AutoMapper;
 using Library.Helpers;
 using System;
@@ -20,10 +22,11 @@ namespace Library.Services {
           where TDtoPk : IEntityDto {
 
         protected IManagerBase<TEntity> _Manager;
-        public IManagerBase<TEntity> Manager { get; private set; }
+        readonly IIocResolver _iocResolver;
 
-        protected AppServiceBase(IManagerBase<TEntity> initManager) {
+        protected AppServiceBase(IManagerBase<TEntity> initManager, IIocResolver initIocResolver) {
             _Manager = initManager;
+            _iocResolver = initIocResolver;
         }
      
         public virtual IEnumerable<TDtoUp> GetAll() {
@@ -55,6 +58,16 @@ namespace Library.Services {
             return vResult;
         }
 
+        public virtual TDtoUp Initialize() {
+            TEntity v = _iocResolver.Resolve<TEntity>();
+            return MapToDtoUp(v);
+        }
+
+
+        protected virtual TUp Initialize<T, TUp>() {
+            T vT = _iocResolver.Resolve<T>();
+            return Mapper.Map<T, TUp>(vT);
+        }
         protected virtual TDtoUp MapToDtoUp(TEntity valEntity) {
             return Mapper.Map<TEntity, TDtoUp>(valEntity);
         }
@@ -78,7 +91,6 @@ namespace Library.Services {
         public virtual List<EnumJson> GetEnumDescription<EnumType>() where EnumType : struct, IComparable, IConvertible, IFormattable {
             return EnumHelper<EnumType>.GetDescriptions();
         }
-
     }    
     public interface IAppServiceBase<TEntity, TDtoDown, TDtoUp, TDtoDelete, TDtoPk> 
         : IApplicationService 
@@ -93,6 +105,7 @@ namespace Library.Services {
         TDtoUp Update(TDtoDown valInput);
         void Delete(TDtoDelete valInput);
         TDtoUp Get(TDtoPk valInput);
+        TDtoUp Initialize();
 
     }
 

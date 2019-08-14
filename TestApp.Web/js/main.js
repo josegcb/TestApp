@@ -1,4 +1,6 @@
-﻿(function ($) {
+﻿var eNaturalezaDeLaCuenta = "TestApp.Models.eNaturalezaDeLaCuenta";
+
+(function ($) {
 
     //Notification handler
     abp.event.on('abp.notifications.received', function (userNotification) {
@@ -32,3 +34,21 @@
     }
 
 })(jQuery);
+
+function today() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = dd + '/' + mm + '/' + yyyy;
+    return today;
+
+}
+
+var sortByProperty = function (property) {
+    return function (x, y) {
+        return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+    };
+};
+

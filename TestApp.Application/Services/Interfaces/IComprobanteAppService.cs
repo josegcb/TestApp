@@ -12,6 +12,10 @@ using TestApp.Models;
 namespace TestApp.Services.Interfaces {
 
     public interface IComprobanteAppService : IAppServiceBase<Comprobante, ComprobanteDown, ComprobanteUp, ComprobanteDelete, ComprobantePk>, IApplicationService {
+
+        ComprobanteDetalleCuentaUp InciarlizarDetalleCuenta();
     }
+
+    
 
 }

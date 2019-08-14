@@ -5,15 +5,7 @@
             function ($http, $scope, $uibModalInstance, vService, parameters) {
 
                 var vm = this;
-                vm.data = {
-                    nombre: '',
-                    TimeStamp: null
-                };
-                vm.enabled = false;
-                vm.action = parameters.action;
-                vm.data.id = parameters.idRecord;
-                vm.hide = vm.action == 'Consultar';
-               
+
                 vm.save = function () {
                     switch (vm.action) {
                         case "Insertar":
@@ -34,10 +26,7 @@
                             abp.message.confirm("Desea eliminar el registro?",
                                 function (result) {
                                     if (result) {
-                                        vService.delete({
-                                            id: idRecord,
-                                            timeStamp: vm.data.timeStamp
-                                        })
+                                        vService.delete(vm.data)
                                             .then(function () {
                                                 abp.notify.info("Registro eliminado ");
                                                 $uibModalInstance.close();
@@ -53,12 +42,20 @@
 
                 vm.cancel = function () {
                     $uibModalInstance.dismiss({});
-                };   
-                
-                function inicializar () {
-                    if (vm.action !== "Insertar") {                        
+                };
+
+                function inicializar() {
+                    vm.action = parameters.action;
+                    vm.enabled = false;
+                    vm.hide = vm.action == 'Consultar';
+                    if (vm.action == "Insertar") {
+                        vService.initialize()
+                            .then(function (result) {
+                                vm.data = result.data;
+                            });
+                    } else {
                         vService.get({
-                            id: vm.data.id
+                            id: parameters.idRecord
                         })
                             .then(function (result) {
                                 vm.data = result.data;
@@ -68,8 +65,7 @@
                         }
                     }
                 }
-
-                inicializar();               
+                inicializar();
             }
         ]);
 })();

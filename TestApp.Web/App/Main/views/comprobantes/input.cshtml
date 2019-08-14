@@ -1,0 +1,77 @@
+
+<div class="modal-header" id="input">
+    <button type="button" class="close" ng-click="vm.cancel()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">
+        <span>Comprobante - {{vm.action}}</span>
+    </h4>
+</div>
+<div class="modal-body">
+
+    <div class="form-group">
+        <label class="form-control-label">Numero</label>
+        <input id="Nombre" autofocus class="form-control" type="text" ng-model="vm.data.numero" ng-disabled="vm.enabled" />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label">Descripcion</label>
+        <input id="descripcion" autofocus class="form-control" type="text" ng-model="vm.data.descripcion" ng-disabled="vm.enabled" />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label">Fecha</label>
+        <input type="text" id="fecha" ng-model="vm.data.fecha" ng-disabled="vm.enabled" />
+    </div>
+    <div class="form-group">
+        <label class="form-control-label">Total</label>
+        <input id="total" autofocus class="form-control" type="text" ng-model="vm.data.total" ng-disabled="vm.enabled" />
+    </div>
+    <span>Asientos</span>
+    <button type="button" class="btn btn-primary"  ng-click="vm.addDetalleCuenta()" ng-hide="vm.hide">Agregar</button>
+
+    <div class="body table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Cuenta</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Debe</th>
+                    <th>Haber</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="detalle  in vm.data.comprobanteDetalleCuenta">
+                    <td>{{detalle.cuentaCodigo}}</td>
+                    <td>{{detalle.descripcion}}</td>
+                    <td>{{detalle.fecha | date:'dd/MM/yyyy'}}</td>
+                    <td>{{detalle.montoDebe}}</td>
+                    <td>{{detalle.montoHaber}}</td>
+                    <td><span class="btn btn-primary" data-toggle="modal" ng-click="vm.editDetalleCuenta($index)" ng-hide="vm.hide"></span></td>
+                    <td><span class="btn btn-primary" data-toggle="modal" ng-click="vm.insertDetalleCuenta($index)" ng-hide="vm.hide"></span></td>
+                    <td><span class="fa fa-close" ng-click="vm.deleteDetalleCuenta($index)" ng-hide="vm.hide"></span></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary waves-effect" ng-click="vm.save()" ng-hide="vm.hide">
+            Guardar
+        </button>
+        <button type="button" class="btn btn-default waves-effect" ng-click="vm.cancel()">
+            Cancelar
+        </button>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#fecha').bootstrapMaterialDatePicker({
+                weekStart: 0, time: false, lang: 'es', format: 'DD/MM/YYYY'
+            });
+        })        
+    </script>
+

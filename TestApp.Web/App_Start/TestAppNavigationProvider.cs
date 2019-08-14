@@ -88,6 +88,14 @@ namespace TestApp.Web
                         icon: "fa fa-info"
                     )
                 )
+                .AddItem(
+                    new MenuItemDefinition(
+                        "WebAPI",
+                        new LocalizableString("WebAPI", TestAppConsts.LocalizationSourceName),
+                        url: "/swagger",
+                        icon: "fa fa-info"
+                    )
+                )
                 ;
         }
 

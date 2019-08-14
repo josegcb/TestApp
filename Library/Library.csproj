@@ -321,7 +321,6 @@
     <Compile Include="Attributes\EnumDescriptionAttribute.cs" />
     <Compile Include="Attributes\VarcharAttribute.cs" />
     <Compile Include="Attributes\DecimalAttribute.cs" />
-    <Compile Include="CustomDateTimeConverter.cs" />
     <Compile Include="Extenders\EnumExtenders.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="IDataFilter.cs" />

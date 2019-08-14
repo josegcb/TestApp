@@ -19,6 +19,7 @@
                         createMenuItem("Comprobantes", "", "free_breakfast", "comprobantes"),                        
                     ])
                 ]),
+                createMenuItem("WebAPI", "", "info", "webapi"),
                 createMenuItem(App.localize("About"), "", "info", "about")
 
             ];

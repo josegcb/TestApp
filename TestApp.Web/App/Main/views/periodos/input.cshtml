@@ -12,7 +12,7 @@
         <div ng-switch-when="Insertar">
             <div class="form-line">
                 <label for="tipoNumeracionSelector"> Seleccione un Tipo de Numeracion: </label><br>
-                <select style="width: 70%;" id="tipoNumeracionSelector" ng-options="vTipoNumeracion.id as vTipoNumeracion.nombre for vTipoNumeracion in vm.arrayTipoNumeracion" ng-model="vm.data.tipoNumeracionId"></select>
+                <select style="width: 70%;" id="tipoNumeracionSelector" ng-options="vTipoNumeracion.id as vTipoNumeracion.nombre for vTipoNumeracion in vm.conexionTipoNumeracion" ng-model="vm.data.tipoNumeracionId"></select>
             </div>
         </div>
         <div ng-switch-default>
@@ -37,7 +37,7 @@
     </div>
     <div class="form-group">
         <label class="form-control-label">Fecha de Cierre</label>        
-        <input type="text" id="fechaDeCierre" ng-model="vm.data.fechaDeCierrre" ng-disabled="vm.enabled"/>
+        <input type="text" id="fechaDeCierre" ng-model="vm.data.fechaDeCierre" ng-disabled="vm.enabled"/>
     </div>
 </div>
 <div class="modal-footer">
@@ -53,12 +53,10 @@
 <script>
     $(document).ready(function () {
         $('#fechaDeCierre').bootstrapMaterialDatePicker({
-            weekStart: 0, time: false, lang: 'es'
+            weekStart: 0, time: false, lang: 'es', format: 'DD/MM/YYYY'
         });
         $('#fechaDeApertura').bootstrapMaterialDatePicker({
-            weekStart: 0, time: false,
-          
-             lang: 'es'
+            weekStart: 0, time: false, lang: 'es', format: 'DD/MM/YYYY'
         });
     })
 </script>

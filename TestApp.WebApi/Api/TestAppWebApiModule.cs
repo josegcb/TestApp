@@ -24,6 +24,7 @@ namespace TestApp.Api
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+            
             IocManager.IocContainer.Register(Component.For(typeof(IManagerBase<>)).ImplementedBy(typeof(ManagerBase<>)).LifestylePerWebRequest());
 
             IocManager.IocContainer.Register(Component.For(typeof(IManagerBase<Comprobante>)).ImplementedBy(typeof(ComprobanteManager<>)).LifestylePerWebRequest());
@@ -31,6 +32,12 @@ namespace TestApp.Api
             IocManager.IocContainer.Register(Component.For<IManagerBase<Cuenta>, ICuentaManager>().ImplementedBy(typeof(CuentaManager<>)).LifestylePerWebRequest());
 
 
+
+            IocManager.IocContainer.Register(Component.For(typeof(TipoNumeracion)));
+            IocManager.IocContainer.Register(Component.For(typeof(Periodo)));
+            IocManager.IocContainer.Register(Component.For(typeof(Cuenta)));
+            IocManager.IocContainer.Register(Component.For(typeof(Comprobante)));
+            IocManager.IocContainer.Register(Component.For(typeof(ComprobanteDetalleCuenta)));
 
 
             Configuration.Modules.AbpWebApi().DynamicApiControllerBuilder
